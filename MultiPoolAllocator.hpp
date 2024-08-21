@@ -1,4 +1,3 @@
-#include <initializer_list>
 #include <algorithm>
 #include <iostream>
 #include "PoolAllocator.hpp"
@@ -105,7 +104,7 @@ public:
 template<class T, std::size_t Count>
 class MultiPoolAllocator
 {
-	PoolAllocator<sizeof(T), Count, true> allocator_;
+	PoolAllocator<sizeof(T), Count> allocator_;
 public:
 	using pointer = PointerForMain<T>;
 
