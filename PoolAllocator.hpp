@@ -43,7 +43,7 @@ public:
 	{
 		Buffer* tmp = this->current.load(std::memory_order_relaxed);
 		Buffer* block;
-		{
+		do{
 			if(tmp == nullptr)
 				return nullptr;
 			block = tmp->ptr;
@@ -62,7 +62,7 @@ public:
 		Buffer* buffer = reinterpret_cast<Buffer*>(mem);
 		Buffer* tmp = this->current.load(std::memory_order_relaxed);
 		this->size_.fetch_add(1, std::memory_order_relaxed);
-		
+		do	
 		{
 			buffer->ptr = tmp;
 		}
